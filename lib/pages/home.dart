@@ -22,11 +22,6 @@ class _HomeState extends State<Home> {
     thickness: 1,
     color: Colors.grey[700],
   );
-  final List<Data> data = [
-    Data(name: "red", time: 20, color: Colors.red),
-    Data(name: "blue", time: 70, color: Colors.blueAccent),
-    Data(name: "yellow", time: 20, color: Colors.yellowAccent)
-  ];
 
   String getTimeString(int value) {
     final int hour = value ~/ 60;
