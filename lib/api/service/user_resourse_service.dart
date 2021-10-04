@@ -1,6 +1,5 @@
 
 import 'dart:convert';
-import 'dart:html';
 
 import 'package:coinedOne/api/model/dataRequest.dart';
 import 'package:coinedOne/api/model/dataResponse.dart';
@@ -16,13 +15,17 @@ class UserResourceService {
 
   Future<DataResponse> fetchData(
       DataRequest dataRequest) async {
-    String apiPath = "https://api.mocklets.com/mock68182/screentime";
-    Response response = await this
-        .httpClient
-        .get(Uri.parse(apiPath));
-    Map<dynamic, dynamic> _responseMap = json.decode(response.body);
-    logger.i(response.body);
-    logger.i(DataResponse.fromJson(_responseMap).toJson());
-    return DataResponse.fromJson(_responseMap);
-  }
+   try{
+     String apiPath = "http://api.mocklets.com/mock68182/screentime";
+     Response response = await this
+         .httpClient
+         .get(Uri.parse(apiPath));
+     List<dynamic> _responseMap = json.decode(response.body);
+     Logger().i("hello world");
+     logger.i(response.body);
+     logger.i(DataResponse.fromJson(_responseMap[0]).toJson());
+     return DataResponse.fromJson(_responseMap[0]);
+   }catch(e) {
+     Logger().i(e.toString());
+   }  }
   }

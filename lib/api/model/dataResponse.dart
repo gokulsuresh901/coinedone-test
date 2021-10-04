@@ -3,7 +3,8 @@ class DataResponse {
   ChartData chartData;
   String freeTimeMaxUsage;
   ChartData deviceUsage;
-
+  String mobileTotalTime;
+  String laptopTotalTime;
   DataResponse({this.chartData, this.freeTimeMaxUsage, this.deviceUsage});
 
   DataResponse.fromJson(Map<String, dynamic> json) {
@@ -11,9 +12,11 @@ class DataResponse {
         ? new ChartData.fromJson(json['chartData'])
         : null;
     freeTimeMaxUsage = json['freeTimeMaxUsage'];
-    deviceUsage = json['deviceUsage'] != null
-        ? new ChartData.fromJson(json['deviceUsage'])
-        : null;
+    if(json['deviceUsage'] != null){
+      mobileTotalTime = json['deviceUsage']['totalTime']['mobile'];
+      laptopTotalTime = json['deviceUsage']['totalTime']['laptop'];
+    }
+
   }
 
   Map<String, dynamic> toJson() {
